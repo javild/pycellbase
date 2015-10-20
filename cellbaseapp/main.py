@@ -1,10 +1,13 @@
 __author__ = 'fjlopez'
 
-import argparse
-# import ..cellbasecore
+
 import sys
-import QueryCommandExecutor
 import os
+sys.path.append(os.path.dirname(os.path.dirname(__file__))) # Adds pycellbase root dir to the PYTHONPATH
+
+import argparse
+import QueryCommandExecutor
+
 
 def main():
 
@@ -23,13 +26,13 @@ def main():
     args = parser.parse_args()
 
     commandExecutor = QueryCommandExecutor.QueryCommandExecutor(args)
-    if(commandExecutor<>None):
+    if(commandExecutor!=None):
         try:
             commandExecutor.loadCellBaseConfiguration()
             commandExecutor.execute()
-        except Exception, e:
-            print "Error loading CellBase configuration"
-            print e.message
+        except Exception as e:
+            print("Error loading CellBase configuration")
+            print(e.message)
             sys.exit(1)
 
 if __name__=='__main__':
